@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI SEO Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>AI SEO Metadata Generator 🚀</h1>
+            <p>Upload an image to automatically generate optimized SEO Metadata using AI.</p>
+        </header>
+
+        <main>
+            <form id="uploadForm">
+                <div class="file-drop-area">
+                    <input type="file" id="imageInput" accept="image/*" required>
+                    <p>Drag & drop an image here or click to select</p>
+                </div>
+                <button type="submit" id="submitBtn">Start</button>
+            </form>
+            <div id="imagePreviewContainer" class="hidden">
+                <img id="imagePreview" src="" alt="Uploaded image preview">
+            </div>
+
+            <div id="loading" class="hidden">
+                <p>🤖 AI is analyzing your image...</p>
+            </div>
+            <div id="errorContainer" class="hidden"
+                style="color: #dc2626; background: #fee2e2; padding: 1rem; border-radius: 8px; margin-top: 1rem; text-align: center; font-weight: bold;">
+            </div>
+            <div id="resultContainer" class="hidden">
+                <h2>Generated SEO Metadata:</h2>
+                <div class="table-responsive">
+                    <table id="seoTable">
+                        <tbody id="tableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
