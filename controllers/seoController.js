@@ -30,11 +30,8 @@ exports.generateSEO = async (req, res) => {
             }
         });
         const result = await model.generateContent([prompt, imagePart]);
-        console.log('Raw API Response:', result);
         const responseText = result.response.text();
-        console.log('API Response Text:', responseText);
         const seoData = JSON.parse(responseText);
-        console.log('Generated SEO Data: 230', seoData);
         return res.status(200).json({
             success: true,
             data: seoData
