@@ -1,4 +1,7 @@
-# 🚀 AI Image SEO Generator
+# 🚀 AI SEO Metadata Generator
+
+## 📸 Preview
+![AI SEO Metadata Generator UI](./assets/screenshot.png)
 
 ## 🧠 Overview
 
