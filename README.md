@@ -1,7 +1,12 @@
 # 🚀 AI SEO Metadata Generator
 
 ## 📸 Preview
-![AI SEO Metadata Generator UI](./assets/Screenshot.png)
+
+### 📤 Image Upload Interface
+![Upload UI](./assets/screenshot_1.png)
+
+### 🧠 Generated SEO Metadata
+![SEO Output](./assets/screenshot_2.png)
 
 ## 🧠 Overview
 
