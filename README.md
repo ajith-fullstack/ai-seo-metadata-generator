@@ -10,27 +10,35 @@
 
 ## 🧠 Overview
 
-AI-powered web application that generates SEO metadata from uploaded images using Google Gemini API.
+AI-powered web application that generates SEO metadata from uploaded images using Google Gemini AI.
 
-Users can upload an image and instantly get:
+Users can upload an image and instantly receive optimized SEO content including:
 
-* SEO Title
-* Meta Description
-* Alt Text
-* Tags / Keywords
-* Category
-* Collection Name
-* Best Publish Time
+- SEO Title
+- Meta Description
+- Alt Text
+- Keywords / Tags
+- Category
+- Collection Name
+- Best Publish Time
 
 ---
 
 ## 🔥 Features
 
-* 📷 Image upload via browser UI
-* 🤖 AI-powered SEO generation using Gemini
-* ⚡ Fast backend with Node.js & Express
-* 🧾 Structured JSON output
-* 🌐 Simple frontend using HTML, CSS, JavaScript
+- 📷 Image upload with preview
+- 🤖 AI-powered SEO generation using Google Gemini
+- 🏷️ SEO Title generation
+- 📝 Meta Description generation
+- 🖼️ Alt Text generation
+- 🔖 Tags / Keywords generation
+- 📂 Category detection
+- 📚 Collection suggestions
+- ⏰ Best Publish Time recommendation
+- 📋 One-click copy functionality
+- ⚠️ Error handling and validation
+- 📦 5 MB maximum image upload limit
+- ⚡ Fast processing with Node.js & Express
 
 ---
 
@@ -41,6 +49,8 @@ Users can upload an image and instantly get:
 │   └── seoController.js
 ├── routes/
 │   └── seoRoutes.js
+├── services/
+│   └── geminiService.js
 ├── public/
 │   ├── index.html
 │   ├── script.js
@@ -49,75 +59,69 @@ Users can upload an image and instantly get:
 ├── server.js
 ├── .env
 ├── package.json
+└── README.md
 ```
 
 ---
 
 ## 🛠 Tech Stack
 
-**Frontend**
+### Frontend
 
-* HTML
-* CSS
-* JavaScript (Vanilla)
+- HTML5
+- CSS3
+- Vanilla JavaScript
 
-**Backend**
+### Backend
 
-* Node.js
-* Express
-* Multer (file upload)
+- Node.js
+- Express.js
+- Multer
 
-**AI**
+### AI
 
-* Google Gemini API (`gemini-2.5-flash`)
+- Google Gemini API
+- Gemini 2.5 Flash
+
+### Deployment
+
+- Vercel
 
 ---
 
 ## ⚙️ Setup Instructions
 
-### 1️⃣ Clone the repository
+### 1️⃣ Clone Repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/ajith-fullstack/ai-seo-metadata-generator.git
 cd ai-seo-metadata-generator
 ```
 
----
-
-### 2️⃣ Install dependencies
+### 2️⃣ Install Dependencies
 
 ```bash
 npm install
 ```
 
----
+### 3️⃣ Configure Environment Variables
 
-### 3️⃣ Create `.env` file
+Create a `.env` file:
 
 ```env
 GEMINI_API_KEY=your_api_key_here
 PORT=3000
 ```
 
----
-
-### 4️⃣ Start the server
-
-```bash
-npm run dev
-```
-
-or
+### 4️⃣ Start Development Server
 
 ```bash
 node server.js
 ```
 
----
+### 5️⃣ Open Browser
 
-### 5️⃣ Open in browser
-
-```bash
+```text
 http://localhost:3000
 ```
 
@@ -127,9 +131,24 @@ http://localhost:3000
 
 ### POST `/api/seo/generate`
 
-**Form Data:**
+#### Form Data
 
-* `image` → image file
+| Key | Type |
+|------|------|
+| image | File |
+
+Supported formats:
+
+- JPG
+- JPEG
+- PNG
+- WEBP
+
+Maximum upload size:
+
+```text
+5 MB
+```
 
 ---
 
@@ -151,15 +170,40 @@ http://localhost:3000
 
 ## 🔐 Best Practices Implemented
 
-* Environment variables for API security
-* Modular architecture (Controller / Routes / Services)
-* Error handling for API failures
-* Clean JSON response formatting
+- Environment variables for API security
+- MVC-inspired project structure
+- Separate Service Layer for Gemini API integration
+- Modular architecture (Controllers, Routes, Services)
+- Error handling for API failures
+- Invalid JSON response handling
+- Client-side file validation
+- 5 MB upload restriction
+- Loading states for better UX
+- Copy-to-clipboard functionality
+- Clean JSON response formatting
 
 ---
 
 ## 🎯 Use Case
 
-This project demonstrates how AI can be used to generate SEO metadata from images. Users can upload an image and instantly receive structured SEO content including title, description, tags, category, and publish time. This can assist developers and content creators in preparing SEO-friendly data for products or media.
+This project demonstrates how AI can be used to generate SEO metadata directly from images. It helps developers, marketers, store owners, and content creators quickly generate SEO-friendly content without manually writing metadata.
+
+Ideal for:
+
+- E-commerce products
+- Blog images
+- Marketing assets
+- Digital catalogs
+- Content management systems
+
+---
+
+## 👨‍💻 Author
+
+**AjithKumar**  
+Full Stack Developer
+
+- GitHub: https://github.com/ajith-fullstack
+- LinkedIn: https://www.linkedin.com/in/ajith-kumar-87817b248
 
 ---

@@ -6,24 +6,58 @@ const resultContainer = document.getElementById('resultContainer');
 const errorContainer = document.getElementById('errorContainer');
 const imagePreviewContainer = document.getElementById('imagePreviewContainer');
 const imagePreview = document.getElementById('imagePreview');
+const tableBody = document.getElementById('tableBody');
+
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
+const ALLOWED_TYPES = [
+    'image/jpeg',
+    'image/jpg',
+    'image/png',
+    'image/webp'
+];
 
 imageInput.addEventListener('change', () => {
     const file = imageInput.files[0];
-    if (file) {
-        const objectUrl = URL.createObjectURL(file);
-        imagePreview.src = objectUrl;
-        imagePreviewContainer.classList.remove('hidden');
-        resultContainer.classList.add('hidden');
-        errorContainer.classList.add('hidden');
-    } else {
+    if (!file) {
         imagePreviewContainer.classList.add('hidden');
+        return;
     }
+    if (file.size > MAX_FILE_SIZE) {
+        errorContainer.textContent = 'Image size must be less than 5 MB';
+        errorContainer.classList.remove('hidden');
+        imageInput.value = '';
+        tableBody.innerHTML = '';
+        resultContainer.classList.add('hidden');
+        imagePreviewContainer.classList.add('hidden');
+        return;
+    }
+    if (!ALLOWED_TYPES.includes(file.type)) {
+        errorContainer.textContent = 'Only JPG, PNG and WEBP files are allowed';
+        errorContainer.classList.remove('hidden');
+        imageInput.value = '';
+        imagePreviewContainer.classList.add('hidden');
+        return;
+    }
+    errorContainer.classList.add('hidden');
+    const objectUrl = URL.createObjectURL(file);
+    imagePreview.src = objectUrl;
+    imagePreviewContainer.classList.remove('hidden');
+    resultContainer.classList.add('hidden');
 });
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const file = imageInput.files[0];
-    if (!file) return;
+    if (!file) {
+        errorContainer.textContent = 'Please select an image.';
+        errorContainer.classList.remove('hidden');
+        return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+        errorContainer.textContent = 'Image size must be less than 5MB.';
+        errorContainer.classList.remove('hidden');
+        return;
+    }
     submitBtn.disabled = true;
     loading.classList.remove('hidden');
     resultContainer.classList.add('hidden');
@@ -36,23 +70,21 @@ form.addEventListener('submit', async (e) => {
             method: 'POST',
             body: formData
         });
-        const rawText = await response.text();
-        let result;
-        try {
-            result = JSON.parse(rawText);
-        } catch (parseError) {
-            console.error("Raw server response:", rawText);
-            throw new Error(`Server did not return valid JSON. Check console for details.`);
+        if (!response.ok) {
+            throw new Error(`Server Error (${response.status})`);
         }
+        const rawText = await response.text();
+        let result  = JSON.parse(rawText);
         if (result.success) {
-            const tableBody = document.getElementById('tableBody');
             tableBody.innerHTML = '';
             for (const [key, value] of Object.entries(result.data)) {
                 const row = document.createElement('tr');
                 const cellKey = document.createElement('td');
-                cellKey.textContent = key.replace('_', ' ');
+                cellKey.textContent = key.replace(/_/g, ' ');
                 const cellValue = document.createElement('td');
-                const textToCopy = Array.isArray(value) ? value.join(', ') : value;
+                const textToCopy = Array.isArray(value)
+                    ? value.join(', ')
+                    : value;
                 cellValue.textContent = textToCopy;
                 const cellAction = document.createElement('td');
                 const copyBtn = document.createElement('button');
@@ -68,7 +100,7 @@ form.addEventListener('submit', async (e) => {
                             copyBtn.classList.remove('copied');
                         }, 2000);
                     } catch (err) {
-                        console.error('Failed to copy: ', err);
+                        console.error('Failed to copy:', err);
                         copyBtn.textContent = 'Error';
                     }
                 });
@@ -80,12 +112,11 @@ form.addEventListener('submit', async (e) => {
             }
             resultContainer.classList.remove('hidden');
         } else {
-            errorContainer.textContent = `Error: ${result.error}`;
-            errorContainer.classList.remove('hidden');
+            throw new Error(result.error || 'SEO generation failed.');
         }
     } catch (error) {
-        console.error(error);
-        errorContainer.textContent = `Error: ${error.message}`;
+        console.error('SEO Generation Error:', error);
+        errorContainer.textContent = error.message || 'Something went wrong. Please try again.';
         errorContainer.classList.remove('hidden');
     } finally {
         submitBtn.disabled = false;
