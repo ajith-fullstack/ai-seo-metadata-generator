@@ -8,6 +8,12 @@
 ### 🧠 Generated SEO Metadata
 ![SEO Output](./assets/screenshot_2.png)
 
+## 🌐 Live Demo
+
+https://ai-seo-metadata-generator.vercel.app/
+
+---
+
 ## 🧠 Overview
 
 AI-powered web application that generates SEO metadata from uploaded images using Google Gemini AI.
