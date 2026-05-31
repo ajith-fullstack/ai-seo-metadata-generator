@@ -10,7 +10,7 @@
 
 ## 🌐 Live Demo
 
-https://ai-seo-metadata-generator.vercel.app/
+https://seo.ajithfullstackdev.in/
 
 ---
 
