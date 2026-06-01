@@ -12,7 +12,7 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     margin: 0;
-    padding: 2rem;
+    padding: 2rem 1rem;
 }
 
 .container {
@@ -22,6 +22,7 @@ body {
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    box-sizing: border-box;
 }
 
 header {
@@ -105,7 +106,6 @@ pre {
     font-family: monospace;
 }
 
-/* NEW: Image Preview Styles */
 #imagePreviewContainer {
     margin-top: 2rem;
     text-align: center;
@@ -113,6 +113,7 @@ pre {
     padding: 1rem;
     border-radius: 8px;
     border: 1px solid var(--border-color);
+    box-sizing: border-box;
 }
 
 #imagePreview {
@@ -123,7 +124,6 @@ pre {
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 }
 
-/* NEW: Table Styles */
 .table-responsive {
     overflow-x: auto;
     border-radius: 8px;
@@ -182,4 +182,53 @@ td:first-child {
 td:last-child {
     width: 100px;
     text-align: right;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 1rem 0.5rem;
+    }
+    .container {
+        padding: 1.25rem;
+        border-radius: 8px;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    .file-drop-area {
+        padding: 2rem 1rem;
+    }
+    tr {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid var(--border-color);
+        padding: 12px 0;
+    }
+    tr:last-child {
+        border-bottom: none;
+    }
+    td {
+        padding: 6px 12px;
+        border: none !important;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+    td:first-child {
+        background-color: transparent;
+        padding-bottom: 2px;
+        font-size: 0.85rem;
+    }
+    td:nth-child(2) {
+        font-size: 0.95rem;
+        color: #334155;
+    }
+    td:last-child {
+        text-align: left;
+        padding-top: 8px;
+    }
+    .copy-btn {
+        width: 100%;
+        max-width: 120px;
+        padding: 8px 12px;
+    }
 }
